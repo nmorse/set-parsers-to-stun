@@ -1,0 +1,26 @@
+{
+  "name": "try-nearley",
+  "version": "0.0.0",
+  "description": "second try is useing the parser generator nearley",
+  "author": "nmorse <morse.nate@gmail.com>",
+  "homepage": "https://github.com/nmorse/set-parsers-to-stun/tree/master/packages/try-nearley#readme",
+  "license": "ISC",
+  "main": "lib/try-nearley.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  }
+}

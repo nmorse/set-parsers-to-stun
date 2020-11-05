@@ -1,0 +1,26 @@
+{
+  "name": "try-arcsecond",
+  "version": "0.0.0",
+  "description": "try using a parser combinator library like arcsecond",
+  "author": "nmorse <morse.nate@gmail.com>",
+  "homepage": "https://github.com/nmorse/set-parsers-to-stun/tree/master/packages/try-arcsecond#readme",
+  "license": "ISC",
+  "main": "lib/try-arcsecond.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  }
+}

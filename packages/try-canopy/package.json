@@ -1,0 +1,26 @@
+{
+  "name": "try-canopy",
+  "version": "0.0.0",
+  "description": "a first try at a simple parser using canopy",
+  "author": "nmorse <morse.nate@gmail.com>",
+  "homepage": "https://github.com/nmorse/set-parsers-to-stun/tree/master/packages/try-canopy#readme",
+  "license": "MIT",
+  "main": "lib/try-canopy.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "bugs": {
+    "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  }
+}

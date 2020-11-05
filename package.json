@@ -1,0 +1,22 @@
+{
+  "name": "set-parsers-to-stun",
+  "version": "1.0.0",
+  "description": "Parsing Parsers Presentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  },
+  "homepage": "https://github.com/nmorse/set-parsers-to-stun#readme",
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  }
+}
