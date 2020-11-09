@@ -18,9 +18,12 @@
     "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "test": "echo \"Error: run tests from root\" && exit 0"
   },
   "bugs": {
     "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  },
+  "dependencies": {
+    "xstate": "^4.14.0"
   }
 }

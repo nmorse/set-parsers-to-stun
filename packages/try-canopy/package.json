@@ -22,5 +22,8 @@
   },
   "bugs": {
     "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  },
+  "devDependencies": {
+    "canopy": "^0.3.0"
   }
 }

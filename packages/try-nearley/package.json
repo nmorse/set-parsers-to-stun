@@ -18,9 +18,14 @@
     "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 1"
+    "build": "npx nearleyc src/alt.ne -o build/try-parser.js",
+    "test": "node __tests__/try-nearley.test.js"
   },
   "bugs": {
     "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
+  },
+  "devDependencies": {
+    "nearley": "^2.19.7",
+    "rollup": "^2.33.1"
   }
 }
