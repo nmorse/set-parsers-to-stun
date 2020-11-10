@@ -18,6 +18,9 @@
     "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
   },
   "scripts": {
+    "buildx": "canopy src/try.peg --lang js",
+    "build": "canopy --lang js 'src/try.peg'",
+    "buildz": "canopy src/try.peg",
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "bugs": {
