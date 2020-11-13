@@ -18,12 +18,17 @@
     "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
   },
   "scripts": {
-    "test": "echo \"Error: run tests from root\" && exit 0"
+    "build": "rollup src/try-parser.js --file lib/try-parser.js --format umd --name parser",
+    "test": "node __tests__/hcp-tests.js"
   },
   "bugs": {
     "url": "https://github.com/nmorse/set-parsers-to-stun/issues"
   },
   "dependencies": {
+    "@xstate/fsm": "^1.5.1",
     "xstate": "^4.14.0"
+  },
+  "devDependencies": {
+    "rollup": "^2.33.1"
   }
 }
