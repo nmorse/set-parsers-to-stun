@@ -1,15 +1,3 @@
-# @{%
-# const moo = require("moo");
-# 
-# const lexer = moo.compile({
-#     hashcomment: {
-#         match: /#[^\n]*/,
-#         value: s => s.substring(1)
-#     }});
-# %}
-# 
-# @lexer lexer
-
 ## paste into https://omrelli.ug/nearley-playground/
 
 pounce -> programList {% (pl) => {

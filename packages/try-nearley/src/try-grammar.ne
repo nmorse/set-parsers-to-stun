@@ -1,36 +1,89 @@
-# Try #2
-# 
-@builtin "whitespace.ne" # `_` means arbitrary amount of whitespace
-@builtin "number.ne"     # `int`, `decimal`, and `percentage` number primitives
+## paste into https://omrelli.ug/nearley-playground/
+# Try #1
 
+try -> programList {% (pl) => {
+    return {pounce : pl[0].filter(i => i !== null) };
+ } %}
 
-try    ->  pinna_pl | pinna_empty
-  pinna_pl ->  _ value (_ value)* _         
-  pinna_empty  -> _                             
+programList -> hashcomment | optS | optS word anotherWord:* optS {% ([_, f, r]) => {
+    let rest = r.map(ele => {
+        if (ele && ele.length && typeof ele !== 'string') {
+            return ele[0];
+        }
+        return ele;
+    });
+    if (f && f.length) {
+        if (f[0].length) {
+            return [...f[0], ...rest];
+        }
+        return [...f, ...rest];
+    } 
+    return [f, ...rest];
+    } %}
 
-  word    ->  [a-zA-Z0-9\_\-\+\=\/\~\!\@\$\%\^\&\*\?\<\>]+ [a-zA-Z0-9\_\-\+\=\/\~\!\@\#\$\%\^\&\*\?\.\<\>]*
-  value   ->  list | number | word | string | map
+optS -> [\s\n\t]:* {% () => null %}
+reqS -> [\s\n\t]:+ {% () => null %}
 
-  map     ->  "{" _ pair? (_  _ pair)* _ "}"
-  pair    ->  word _ ":" _ value               
+word -> number | string | list {% ([word]) => {
+    if (word === null) {
+        return '';
+    }
+    if (typeof word === 'string') {
+        return word;
+    }
+    if (word.list) {
+        return [[word.list]];
+    }
+    if (word === null) {
+        return [];
+    }
+    return word[0];
+} %}
+anotherWord -> reqS word {% ([_, terms]) => {
+    if (terms && terms.length) {
+        return terms[0];
+    }
+    if (terms && terms.list) {
+        return terms;
+    }
+    return {anotherWord: "unexpected", terms}
+} %}
 
-# # # # Strings JS style ["", '', ``] # # # #
-  string    ->  string_s | string_d | string_t
-  string_s  ->  "'" [^']* "'" 
-  string_d  ->  '"' [^\"]* '"'
-  string_t  ->  '`' [^`]* '`' 
+hashcomment -> "#" [^\n]:* {% () => [] %} 
 
-  list        ->  list_empty | list_full
-  list_empty  ->  "[" _ "]"                        
-  list_full   ->  "[" _ value (_ value)* _ "]" 
+list -> "[" programList "]" {% ([_, items]) => {
+    return {list: items};
+} %}
 
-  number    ->  float1 | float2 | float3 | integer
-  float1    ->  "-"? [0-9]+ "." [0-9]+ end_of_word  
-  float2    ->  "-"? "." [0-9]+ end_of_word 
-  float3    ->  "-"? [0-9]+ "." end_of_word 
-  integer   ->  "-"? [0-9]+ end_of_word 
+string -> plainStr 
+    | singleQuoteStr 
+    | doubleQuoteStr 
 
-  end_of_word -> &_ | &"[" | &"]" | &"{" | &"}" | [$]+
+plainStr -> [0-9]:* ([a-zA-Z\~\!\@\$\%\^\&\*\_\=\+\/\\\?\,\<\>\;\:] [0-9\-\.]:* ):+ {% ([pre, nonNum]) => {
+    const part2 = nonNum.map(ele => {
+        return ele[0] + ele[1].join("");
+    });
+    return `${pre.join("")}${part2.join("")}`;
+} %}
 
-  comment -> "#" [^\n]*
-  end_of_string -> [$]  
+singleQuoteStr -> "'"  ([\sa-zA-Z0-9\"\`\~\!\@\$\%\^\&\*\-\_\=\+\/\\\?\.\,\<\>\;\:] | "\\'"):* "'" {% ([_, e]) => ( `'${e.join("")}'` ) %}
+
+doubleQuoteStr -> "\"" ([\sa-zA-Z0-9\'\`\~\!\@\$\%\^\&\*\-\_\=\+\/\\\?\.\,\<\>\;\:] | "\\\""):* "\"" {% ([_, e]) => ( `"${e.join("")}"` ) %}
+
+number    ->  float1 | float2 | float3 | integer
+
+float1    ->  "-":? [0-9]:+ "." [0-9]:+  {% ([minus, integ, dot, metisa]) => {
+      return parseFloat(minus? '-': '' + integ.join("") + dot + metisa.join(""));
+  } %}
+float2    ->  "-":? "." [0-9]:+  {% ([minus, dot, metisa]) => {
+      return parseFloat(minus? '-': '' + dot + metisa.join(""));
+  } %}
+
+float3    ->  "-":? [0-9]:+ "."  {% ([minus, integ, dot]) => {
+      return parseFloat(minus? '-': '' + integ.join("") + dot);
+  } %}
+
+integer   ->  "-":? [0-9]:+  {% ([minus, integ]) => {
+      return parseInt(minus? '-': '' + integ.join(""));
+  } %}
+  

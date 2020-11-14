@@ -18,7 +18,10 @@
     "url": "git+https://github.com/nmorse/set-parsers-to-stun.git"
   },
   "scripts": {
-    "build": "npx nearleyc src/alt.ne -o build/try-parser.js",
+    "build:0": "npx nearleyc src/alt.ne -o build/try-parser.js",
+    "build:1": "npx nearleyc src/try-1-grammar.ne -o build/try-parser.js",
+    "build": "npx nearleyc src/try-grammar.ne -o build/try-parser.js",
+    "test:1": "node __tests__/try-nearley.test1.js",
     "test": "node __tests__/try-nearley.test.js"
   },
   "bugs": {
